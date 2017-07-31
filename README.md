@@ -1,14 +1,9 @@
 # Overview
 
-This is a simple dashboarding application built using Flask and Bootstrap.  The application has been tested with Python 2.7. It's ready to deploy with [AWS Elastic Beanstalk](http://aws.amazon.com/elasticbeanstalk/).
+This is a simple dashboarding application integrated with [cobbler](http://cobbler.github.io/manuals/quickstart/) && [saltstalk](https://github.com/saltstack), built using Flask and Bootstrap.
 
-You can view the applcation at [flaskdashboard.info](http://flaskdashboard.info/) using the following user credentials:
-* **Test User #1**
-  * Email: joe@Supervisor.com
-  * Password: password
-* **Test User #2**
-  * Email: bill@Supervisor.com
-  * Password: password
+The dashboard template is from [salimhamed/dashboard](https://github.com/salimhamed/dashboard).
+
 
 # Installation
 
@@ -50,56 +45,4 @@ You can view the applcation at [flaskdashboard.info](http://flaskdashboard.info/
   ./manage.py runserver
   ```
 
-# Database Operations
 
-**PostgreSQL Database Operations**
-
-1. `pg_ctl` is a utility to initialize, start, stop, or control a PostgreSQL server.
-  * `pg_ctl status -D DATADIR` shows the status of a PostgreSQL database.
-  * `pg_ctl start -D DATADIR` starts the PostgreSQL server
-  * `pg_ctl stop -D DATADIR` stops the PostgreSQL server.
-  * `pg_ctl stop -D DATADIR -m fast` immediately stops the PostgreSQL server rather than waiting for session-initiated disconnection.
-2. `postgres` is the PostgreSQL server.
-  * `postgres -D DATADIR` starts the PostgreSQL server.
-3. `psql` is the PostgreSQL interactive terminal.
-  * `psql -d DATABASE` connects to a given database.
-  * `psql -l` lists all available databases.
-
-**Destroy and Rebuild Database**
-
-1. The positional argument 'db_rebuild' will delete any existing sqlite database and create a new devlopment database populated with fake data.
-
-  ```
-  ./manage db_rebuild
-  ```
-
-**Database Migrations**
-
-1. Create an automatic migration upgrade script
-
-  ```
-  ./manage db migrate -m "<migration message>"
-  ```
-
-2. Apply the migration upgrade script (note, upgrade script should be reviewed before applying changes)
-
-  ```
-  ./manage db upgrade
-  ```
-
-# Resources
-
-* [Flask Documentation](http://flask.pocoo.org/)
-* [Bootstrap Documentation](http://getbootstrap.com/)
-* [SB Admin 2 Bootstrap Template](http://startbootstrap.com/template-overviews/sb-admin-2/)
-* [Miguel Grinberg Flask Web Development Book](http://www.flaskbook.com/)
-* [Miguel Grinberg Flask Web Development GitHub](https://github.com/miguelgrinberg/flasky)
-
-# Flask Extensions
-* [Flask Bootstrap](http://pythonhosted.org/Flask-Bootstrap/)
-* [Flask Mail](https://pythonhosted.org/Flask-Mail/)
-* [Flask Moment](https://github.com/miguelgrinberg/flask-moment/)
-* [Flask SQLAlchemy](https://pythonhosted.org/Flask-SQLAlchemy/)
-* [Flask Migrate](https://flask-migrate.readthedocs.org/en/latest/)
-* [Flask Login](https://flask-login.readthedocs.org/en/latest/)
-* [Flask Script](http://flask-script.readthedocs.org/en/latest/)
