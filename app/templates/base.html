@@ -1,0 +1,202 @@
+{% extends "bootstrap/base.html" %}
+
+
+{% block html_attribs %} lang="en"{% endblock %}
+
+
+{% block title %}Supervisors{% endblock title %}
+
+
+{% block styles %}
+    <!-- Favicon.ico -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='sb-admin-2/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{{ url_for('static', filename='sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="{{ url_for('static', filename='sb-admin-2/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{{ url_for('static', filename='sb-admin-2/bower_components/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
+
+    <!-- SB-Admin-2 Custom CSS -->
+    <link href="{{ url_for('static', filename='sb-admin-2/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{{ url_for('static', filename='sb-admin-2/bower_components/morrisjs/morris.css') }}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ url_for('static', filename='sb-admin-2/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+{% endblock styles %}
+
+
+{% block navbar %}
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+    {% block navbar_brand %}
+    <div class="navbar-header">
+
+        <!-- mobile menu toggle -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!-- end mobile menu toggle -->
+
+        <!-- brand -->
+        <a class="navbar-brand" href="{{ url_for('main.index') }}">Supervisors</a>
+        <!-- end brand-->
+
+    </div>
+    {% endblock navbar_brand %}
+
+    {% block top_menu_items %}
+    <ul class="nav navbar-top-links navbar-right">
+        {% block top_menu_items_account %}
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="{{ url_for('auth.change_email_request') }}"><i class="fa fa-fw fa-gear"></i> Change Email</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('auth.change_password') }}"><i class="fa fa-fw fa-gear"></i> Change Password</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out fa-fw"></i> Log Out</a>
+                </li>
+            </ul>
+        </li>
+        {% endblock top_menu_items_account %}
+
+    </ul>
+    {% endblock top_menu_items %}
+
+    {% block sidebard_menu_items %}
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+
+                <li class="sidebar-search">
+                </li>
+
+                <li>
+                    <a href="{{ url_for('main.index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-cubes fa-fw"></i> Cobbler<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ url_for('main.images', username = current_user.username) }}"><i class="fa fa-lightbulb-o fa-fw"></i> Image List</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('main.nodes', username = current_user.username) }}"><i class="fa fa-university fa-fw"></i> Node List</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('main.nodes', username = current_user.username) }}"><i class="fa fa-rocket fa-fw"></i> Add Node</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> SaltStalk<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#"><i class="fa fa-file-o fa-fw"></i> Remote Execution</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-file-o fa-fw"></i> Configure Management</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                <a href="{{ url_for('main.users', username = current_user.username) }}"><i class="fa fa-users fa-fw"></i> Users</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    {% endblock sidebard_menu_items %}
+
+</nav>
+{% endblock navbar %}
+
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid">
+
+        {% block content_flash %}
+            {% for message in get_flashed_messages(category_filter=["info"]) %}
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{ message }}
+            </div>
+            {% endfor %}
+
+            {% for message in get_flashed_messages(category_filter=["error"]) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{ message }}
+            </div>
+            {% endfor %}
+
+            {% for message in get_flashed_messages(category_filter=["success"]) %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ message }}
+            </div>
+            {% endfor %}
+        {% endblock content_flash %}
+
+        {% block wrapper %}
+        {% endblock wrapper %}
+
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block scripts %}
+
+<!-- Set Global Variable of Site Root -->
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.host|tojson|safe }};
+</script>
+
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='sb-admin-2/bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ url_for('static', filename='sb-admin-2/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{{ url_for('static', filename='sb-admin-2/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="{{ url_for('static', filename='sb-admin-2/dist/js/sb-admin-2.js') }}"></script>
+
+<!-- Autocomplete -->
+<script src="{{ url_for('static', filename='typeahead/typeahead.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
+
+<!-- Moment -->
+{{ moment.include_moment() }}
+
+{% endblock scripts %}

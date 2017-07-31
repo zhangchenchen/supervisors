@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Supervisor - Image List{% endblock %}
+
+{% block wrapper %}
+
+    <!-- page header -->
+    <div class="page-header">
+        <h1>Images List </h1>
+    </div>
+    <!-- end page header -->
+
+    <!-- table list -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-lightbulb-o fa-lg"></i> Image List
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Architecture</th>
+                                    <th>Breed</th>
+                                    <th>OS Version</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for distro in distros_list %}
+                            <tr>
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+                                <td>
+                                    {{ distro.name }}
+                                </td>
+                                <td>
+                                    {{ distro.arch }}
+                                </td>
+                                <td>
+                                    {{ distro.breed }}
+                                </td>
+                                <td>
+                                    {{ distro.os_version }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- end table list -->
+
+{% endblock wrapper %}

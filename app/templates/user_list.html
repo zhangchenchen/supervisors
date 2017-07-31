@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Supervisor - Users{% endblock %}
+
+{% block wrapper %}
+
+    <!-- page header -->
+    <div class="page-header">
+        <h1>Users {% if followed %} <small>Followed By {{ user.username }}</small>{% endif %}</h1>
+    </div>
+    <!-- end page header -->
+
+    <!-- table list -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-users fa-lg"></i> Users
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+
+                            <button type="button" id="bt_edit_cobbler" class="btn btn-sm btn-success">修改cobbler配置</button>
+                            <button type="button" id="bt_node_add" class="btn btn-sm btn-success">添加物理机</button>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Username</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Location</th>
+                                    {% if followed %}<th>Following Since</th>{% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for u in users %}
+                            <tr>
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('main.user', username = u.user.username) }}">
+                                        {{ u.user.username }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('main.user', username = u.user.username) }}">
+                                        {{ u.user.name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ u.user.email }}
+                                </td>
+                                <td>
+                                    {{ u.user.location }}
+                                </td>
+                                {% if followed %}
+                                <td>
+                                    {{ moment(u.timestamp).format('L') }}
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- end table list -->
+
+{% endblock wrapper %}

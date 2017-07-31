@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Supervisor - Node List{% endblock %}
+
+{% block wrapper %}
+
+    <!-- page header -->
+    <div class="page-header">
+        <h1> Node List</h1>
+    </div>
+    <!-- end page header -->
+
+    <!-- table list -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                        <i class="fa fa-university fa-lg"></i>Node List
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Hostname</th>
+                                    <th>Image</th>
+                                    <th>IP</th>
+                                    <th>Mac_address</th>
+                                    <th>Name_servers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for node in nodes_list %}
+                            <tr>
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+                                <td>
+                                    {{ node.name }}
+                                </td>
+                                <td>
+                                    {{ node.hostname }}
+                                </td>
+                                <td>
+                                    {{ node.profile }}
+                                </td>
+                               <td>
+                                    {{ node.interfaces.eth0.ip_address }}
+                                </td>
+                                <td>
+                                    {{ node.interfaces.eth0.mac_address }}
+                                </td>
+                                <td>
+                                  {% for nameserver in node.name_servers %}
+                                      {% if loop.last %}
+                                          {{nameserver}}                                      
+                                      {% else %}
+                                          {{nameserver}},
+                                      {% endif %}
+                                  {% endfor %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- end table list -->
+
+{% endblock wrapper %}
