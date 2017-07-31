@@ -1,13 +1,11 @@
-# [中文版本]()
+# 预览
 
-# Overview
+一个简单的dashboard,集成了[cobbler](http://cobbler.github.io/manuals/quickstart/) && [saltstalk](https://github.com/saltstack), 使用了flask + bootstrap技术栈。
 
-This is a simple dashboarding application integrated with [cobbler](http://cobbler.github.io/manuals/quickstart/) && [saltstalk](https://github.com/saltstack), built using Flask and Bootstrap.
-
-The dashboard template is from [salimhamed/dashboard](https://github.com/salimhamed/dashboard).
+dashboard的前端模板部分来自[salimhamed/dashboard](https://github.com/salimhamed/dashboard)。
 
 
-# Installation
+# 安装
 
 1. Clone the repository
 
@@ -46,5 +44,3 @@ The dashboard template is from [salimhamed/dashboard](https://github.com/salimha
   ```
   ./manage.py runserver
   ```
-
-
