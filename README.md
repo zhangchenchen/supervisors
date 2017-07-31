@@ -1,4 +1,4 @@
-# [中文版本]()
+# [中文版本](https://github.com/zhangchenchen/supervisors/blob/master/README_ZH_CN.md)
 
 # Overview
 

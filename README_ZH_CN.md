@@ -1,4 +1,4 @@
-# 预览
+# 概览
 
 一个简单的dashboard,集成了[cobbler](http://cobbler.github.io/manuals/quickstart/) && [saltstalk](https://github.com/saltstack), 使用了flask + bootstrap技术栈。
 
