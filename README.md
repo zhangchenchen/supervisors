@@ -12,7 +12,7 @@ The dashboard template is from [salimhamed/dashboard](https://github.com/salimha
 1. Clone the repository
 
   ```
-  git clone https://github.com/salimhamed/dashboard.git
+  git clone git@github.com:zhangchenchen/supervisors.git
   ```
 
 2. Create a virtualenv in the project directory
